@@ -1,0 +1,17 @@
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+	      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	      xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	      http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	      version="2.5">
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+	<servlet>
+		<servlet-name>br.com.opencs.ssltest.servlet.SSLTestServlet</servlet-name>
+		<servlet-class>br.com.opencs.ssltest.servlet.SSLTestServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>br.com.opencs.ssltest.servlet.SSLTestServlet</servlet-name>
+		<url-pattern>/SSLTestServlet</url-pattern>
+	</servlet-mapping>
+</web-app>
