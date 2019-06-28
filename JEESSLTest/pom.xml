@@ -4,20 +4,26 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.com.opencs.ssltest</groupId>
 	<artifactId>JEESSLTest</artifactId>
+	<packaging>pom</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.5</maven.compiler.source>
 		<maven.compiler.target>1.5</maven.compiler.target>
 	</properties>
-	<dependencies>
-		<!-- https://mvnrepository.com/artifact/javaee/javaee-api -->
-		<dependency>
-			<groupId>javaee</groupId>
-			<artifactId>javaee-api</artifactId>
-			<version>5</version>
-			<scope>provided</scope>
-		</dependency>
-	</dependencies>
+	<dependencyManagement>
+		<dependencies>
+			<!-- https://mvnrepository.com/artifact/javaee/javaee-api -->
+			<dependency>
+				<groupId>javaee</groupId>
+				<artifactId>javaee-api</artifactId>
+				<version>5</version>
+				<scope>provided</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	<modules>
+		<module>../JEESSLTestWeb/pom.xml</module>
+		<module>../JEESSLTestEAR/pom.xml</module>
+	</modules>
 </project>
