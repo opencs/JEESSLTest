@@ -6,7 +6,7 @@
 		<relativePath>../JEESSLTest</relativePath>
 		<groupId>br.com.opencs.ssltest</groupId>
 		<artifactId>JEESSLTest</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>0.0.3-SNAPSHOT</version>
 	</parent>
 	<artifactId>JEESSLTestEAR</artifactId>
 	<packaging>ear</packaging>

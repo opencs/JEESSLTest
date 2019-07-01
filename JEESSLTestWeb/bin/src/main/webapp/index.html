@@ -10,24 +10,21 @@
 		This web application should be used for tests only. Never keep it installed on
 		production environments.
 	</address>
+	<form action="SSLTestServlet" target="output" method="GET">
 		<table>
 			<tr>
 				<td>
-					<form action="SSLTestServlet" target="output" method="GET">
-						<input type="hidden" name="action" value="connect">	
-						URL
-						<input type="text" name="url" width="100px">
-						<input type="submit" value="connect">
-					</form>
+					URL
 				</td>
 				<td>
-					<form action="SSLTestServlet" target="output" method="GET">
-						<input type="hidden" name="action" value="dump">	
-						<input type="submit" value="Dump SSL/TLS information">
-					</form>
+					<input type="text" name="url" width="100px">
+				</td>
+				<td>
+					<input type="submit" value="Connect">
 				</td>
 			</tr>
 		</table>
+	</form>
 	<iframe name="output" width="100%" height="400px"></iframe>
 	<address>
 		Copyright &copy; 2019 Open Communications Security.

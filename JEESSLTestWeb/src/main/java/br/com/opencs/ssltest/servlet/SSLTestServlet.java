@@ -27,6 +27,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.com.opencs.ssltest.tools.SSLInfoExtractor;
+
 public class SSLTestServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -74,18 +76,40 @@ public class SSLTestServlet extends HttpServlet {
 		}		
 	}
 	
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		resp.setContentType("text/plain");
+	private void doDumpSSLInfo(HttpServletRequest req, PrintWriter out) throws IOException {
+		SSLInfoExtractor.dumpProperties(out);
+		out.println();
+		SSLInfoExtractor.dumpProtocols(out);
+		out.println();
+		SSLInfoExtractor.dumpClientAlgorithms(out);
+		out.println();
+		SSLInfoExtractor.dumpServerAlgorithms(out);
+	}
+	
+	private void doConnect(HttpServletRequest req, PrintWriter out) throws ServletException, IOException {
 		
 		String url = req.getParameter("url"); 
 		if (url != null) {
-			testURL(url, resp.getWriter());
+			testURL(url, out);
 		} else {
-			resp.getWriter().print("Missing URL!");
+			out.print("Missing URL!");
+		}
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+		String action = req.getParameter("action");
+		resp.setContentType("text/plain");
+		if (action == null) {
+			resp.getWriter().println("Missing action.");
+		} else if (action.contentEquals("connect")) {
+			doConnect(req, resp.getWriter());
+		} else if (action.contentEquals("dump")) {
+			doDumpSSLInfo(req, resp.getWriter());
+		} else {
+			resp.getWriter().printf("Unknown action '%1$s'.", action);
 		}
 		resp.getWriter().close();		
 	}
-
 }
