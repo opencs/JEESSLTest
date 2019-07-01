@@ -2,7 +2,7 @@
 
 ## Description
 
-**OpenCS's JEESSLTest** is a small **Java EE 5+** web application designed to be
+**OpenCS's JEESSLTest** is a small **Java EE 4+** web application designed to be
 used to test HTTP and HTTPS connections from withing a **Java EE Application Server**.
 
 It is specially useful to test connections in environments under heavy firewall
@@ -26,7 +26,14 @@ To test the connection, just put the target URL in the URL text box and press
 
 ![screenshot](pics/screenshot.png)
 
-A short demonstration video can be found at https://youtu.be/TSvAAN8KKik
+A short demonstration video can be found at https://youtu.be/TSvAAN8KKik (needs update).
+
+It also have a small console tool called **JSESSLTest** that can be executed directly by
+running:
+
+```
+$ /path/to/java/bin/java -jar JSESSLTest-x.y.z-SNAPSHOT.jar
+```
 
 ## Compatibility
 
@@ -38,7 +45,7 @@ This is the compatibility matrix with tested application servers:
  Application Server | JDK | Result | Reported by
  ------------------ | --- | ------ | -----------
  Apache TomEE 7.1 | OpenJDK 8u212-b03 | OK | OpenCS
- IBM WAS 6.1 | Built-in J9 | ? | OpenCS
+ IBM WAS 6.1 | Built-in J9 | OK | OpenCS
  IBM WAS 8.5.5.x | Built-in J9 | ? | OpenCS
  IBM WAS 9.0.x | Built-in J9 | ? | OpenCS
  RedHat JBoss 5.1 | Sun Microsystems JDK 1.5.0_22 | OK | OpenCS
