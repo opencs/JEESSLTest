@@ -15,113 +15,11 @@
  */
 package br.com.opencs.ssltest.console;
 
-import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Enumeration;
-
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLServerSocketFactory;
-import javax.net.ssl.SSLSocketFactory;
-
 public class JSESSLTest {
-
-	private static final String [] PROTOCOL_LIST= {
-			"SSL", 
-			"SSLv2", 
-			"SSLv3", 
-			"TLS", 
-			"TLSv1", 
-			"TLSv1.1", 
-			"TLSv1.2",
-			"TLSv1.3"};
-	
-	private static void dumpProperties(PrintStream out) {
-		
-		out.println("=================");
-		out.println("System properties");
-		out.println("-----------------");
-		
-		ArrayList<String> keys = new ArrayList<String>();
-		Enumeration<Object> keyEnum = System.getProperties().keys();
-		while (keyEnum.hasMoreElements()) {
-			keys.add(keyEnum.nextElement().toString());
-		}
-		Collections.sort(keys);
-		
-		for (int i = 0; i < keys.size(); i++) {
-			out.printf("\t%1$s=%2$s\n", keys.get(i), System.getProperty(keys.get(i)));
-		}
-	}
-	
-	private static void checkProtocols(PrintStream out) {
-		
-		out.println("===================");
-		out.println("Supported protocols");
-		out.println("-------------------");
-		for (int i = 0; i < PROTOCOL_LIST.length; i++) {
-			boolean supported = false;
-			try {
-				supported = (SSLContext.getInstance(PROTOCOL_LIST[i]) != null);
-			} catch (Exception e) {}
-			out.println("\t" + PROTOCOL_LIST[i] + ": " + supported);
-		}		
-	}
-	
-	private static void checkClientAlgorithms(PrintStream out) {
-		
-		SSLSocketFactory sf = ((SSLSocketFactory)SSLSocketFactory.getDefault());
-		
-		out.println("=================");
-		out.println("Client Algorithms");
-		out.println("-----------------");
-
-		out.println("Default:");		
-		String [] defaultAlg = sf.getDefaultCipherSuites();
-		Arrays.sort(defaultAlg);
-		for (int i = 0; i < defaultAlg.length; i++) {
-			out.println("\t" + defaultAlg[i]);
-		}
-
-		out.println("Supported:");		
-		String [] supported = sf.getSupportedCipherSuites();
-		Arrays.sort(supported);
-		for (int i = 0; i < supported.length; i++) {
-			out.println("\t" + supported[i]);
-		}
-	}
-	
-	private static void checkServerAlgorithms(PrintStream out) {
-		SSLServerSocketFactory sf = ((SSLServerSocketFactory)SSLServerSocketFactory.getDefault());
-		
-		out.println("=================");
-		out.println("Server Algorithms");
-		out.println("-----------------");
-
-		out.println("Default:");		
-		String [] defaultAlg = sf.getDefaultCipherSuites();
-		Arrays.sort(defaultAlg);
-		for (int i = 0; i < defaultAlg.length; i++) {
-			out.println("\t" + defaultAlg[i]);
-		}
-
-		out.println("Supported:");		
-		String [] supported = sf.getSupportedCipherSuites();
-		Arrays.sort(supported);
-		for (int i = 0; i < supported.length; i++) {
-			out.println("\t" + supported[i]);
-		}
-	}
 	
 	public static void main(String[] args) {
-		
-		dumpProperties(System.out);
-		System.out.println();
-		checkProtocols(System.out);
-		System.out.println();
-		checkClientAlgorithms(System.out);
-		System.out.println();
-		checkServerAlgorithms(System.out);
+
+		SSLInfoExtractor.dump();
+
 	}
 }
