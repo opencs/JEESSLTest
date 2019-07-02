@@ -19,7 +19,25 @@ public class JSESSLTest {
 	
 	public static void main(String[] args) {
 
-		SSLInfoExtractor.dump();
-
+		if (args.length < 1) {
+			System.out.println("Usage:");
+			System.out.println("\tjava -jar JSESSLTest dump");
+			System.out.println("\tjava -jar JSESSLTest connect <url>");
+			System.exit(1);
+		} else {
+			if (args[0].equals("dump")) {
+				SSLInfoExtractor.dump();
+			} else if (args[0].equals("connect")) {
+				if (args.length >= 2) {
+					ConnectionTest.connect(args[1]);	
+				} else {
+					System.out.println("url missing.");
+					System.exit(1);
+				}
+			} else {
+				System.out.printf("Unknown command '%1$s'.", args[0]);
+				System.exit(1);
+			}
+		}
 	}
 }
